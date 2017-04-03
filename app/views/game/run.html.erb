@@ -1,10 +1,12 @@
-<h1>The Longuest Word Game</h1>
+<div class="container">
+  <h1 class="text-center">The Longuest Word Game</h1>
 
-<h2>Grid: <%= @grid %></h2>
+  <h2 class="text-center">Grid: <%= @grid %></h2>
 
-<form action="<%= result_path %>" method="get">
-  <input type="text" name="attempt">
-  <input type="hidden" name="grid" value="<%= @grid %>">
-  <input type="hidden" name="start_time" value="<%= @start_time %>">
-  <input type="submit" value="GO">
-</form>
+  <form action="<%= result_path %>" method="get" class="text-center">
+    <input type="text" name="attempt">
+    <input type="hidden" name="grid" value="<%= @grid %>">
+    <input type="hidden" name="start_time" value="<%= @start_time %>">
+    <input type="submit" value="GO">
+  </form>
+</div>
