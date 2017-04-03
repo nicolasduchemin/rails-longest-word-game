@@ -2,17 +2,18 @@ class GameController < ApplicationController
 
   def run
   end
-  
-  def score
-  end
 
+  def score
+    @result = run_game(@attempt, grid, start_time, end_time)
+  end
 
   def generate_grid(grid_size)
     Array.new(grid_size) { ('A'..'Z').to_a[rand(26)] }
   end
 
   def included?(guess, grid)
-    guess.split("").all? { |letter| grid.include? letter }
+    guess = guess.split('')
+    guess.all? { |letter| guess.count(letter) <= grid.count(letter) }
   end
 
   def compute_score(attempt, time_taken)
@@ -33,12 +34,12 @@ class GameController < ApplicationController
     if translation
       if included?(attempt.upcase, grid)
         score = compute_score(attempt, time)
-        [score, "well done"]
+        [score, 'well done']
       else
-        [0, "not in the grid"]
+        [0, 'not in the grid']
       end
     else
-      [0, "not an english word"]
+      [0, 'not an english word']
     end
   end
 
@@ -48,6 +49,4 @@ class GameController < ApplicationController
     json = JSON.parse(response.read.to_s)
     json['term0']['PrincipalTranslations']['0']['FirstTranslation']['term'] unless json["Error"]
   end
-
-end
 end
