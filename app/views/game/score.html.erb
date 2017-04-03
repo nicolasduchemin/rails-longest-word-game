@@ -1,12 +1,15 @@
 <div class="container">
   <h1 class="text-center">Result</h1>
-  <ul class="text-center">
-    <li>Attempt: <%= @attempt%></li>
-    <li>Translation: <%= @result[:translation]%></li>
-    <li>Time: <%= @result[:time]%></li>
-    <li>Message: <%= @result[:message]%></li>
-    <li>Score: <%= @result[:score]%></li>
-  </ul>
-  <div class="text-center"><%= link_to("Restart", game_path) %></div>
+  
+  <div class="text-center">
+    <ul>
+      <li>Attempt: <%= @attempt%></li>
+      <li>Translation: <%= @result[:translation]%></li>
+      <li>Time: <%= @result[:time]%></li>
+      <li>Message: <%= @result[:message]%></li>
+      <li>Score: <%= @result[:score]%></li>
+    </ul>
+  </div>
+  <div class="text-center"><%= link_to("Try Again", game_path) %></div>
 </div>
 
