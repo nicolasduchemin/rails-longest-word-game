@@ -1,9 +1,15 @@
 class GameController < ApplicationController
 
   def run
+    @grid = generate_grid(10).join
+    @start_time = Time.now
   end
 
   def score
+    grid = params[:grid].split("")
+    @attempt = params[:attempt]
+    start_time = Time.parse(params[:start_time])
+    end_time = Time.now
     @result = run_game(@attempt, grid, start_time, end_time)
   end
 
@@ -26,7 +32,6 @@ class GameController < ApplicationController
     result[:translation] = get_translation(attempt)
     result[:score], result[:message] = score_and_message(
       attempt, result[:translation], grid, result[:time])
-
     result
   end
 
@@ -42,7 +47,6 @@ class GameController < ApplicationController
       [0, 'not an english word']
     end
   end
-
 
   def get_translation(word)
     response = open("http://api.wordreference.com/0.8/80143/json/enfr/#{word.downcase}")
